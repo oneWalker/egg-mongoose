@@ -13,7 +13,8 @@ script:
   - npm run test
   
 after_script:
-  - if [[ "$TRAVIS_TEST_RESULT" == 0 ]]; then
+   - |
+    if [[ "$TRAVIS_TEST_RESULT" == 0 ]]; then
       npx codecov -f coverage/*.json
       # 或者使用以下命令上传 HTML 报告，前提是生成了 HTML 格式的覆盖率报告
       # npx codecov -f coverage/*.html
