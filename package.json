@@ -31,7 +31,7 @@
     "webstorm-disable-index": "^1.1.2"
   },
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=14.0.0"
   },
   "scripts": {
     "test": "npm run lint -- --fix && npm run test-local",
@@ -51,7 +51,7 @@
     "lib"
   ],
   "ci": {
-    "version": "8, 10, 12"
+    "version": "14,16"
   },
   "repository": {
     "type": "git",
