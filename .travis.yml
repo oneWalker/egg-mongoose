@@ -1,16 +1,17 @@
-sudo: false
 language: node_js
 node_js:
-  - '8'
   - '10'
   - '12'
+  - '16'
+
 install:
-  - npm i npminstall && npminstall
+  - npm ci
+
 script:
-  - npm run ci
+  - npm run test
+
 after_script:
-  - npminstall codecov && codecov
+  - npm install codecov && codecov
+
 services:
   - mongodb
-cache:
-  npm: false
