@@ -48,7 +48,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eggjs/egg-mongoose.git"
+    "url": "https://github.com/oneWalker/egg-mongoose"
   },
   "bugs": {
     "url": "https://github.com/eggjs/egg/issues"
