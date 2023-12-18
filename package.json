@@ -1,7 +1,7 @@
 {
-  "name": "egg-mongoose",
-  "version": "4.0.1",
-  "description": "egg mongoose plugin",
+  "name": "@onewalker/egg-mongoose",
+  "version": "4.1.0",
+  "description": "egg mongoose plugin advanced by @oneWalker",
   "eggPlugin": {
     "name": "mongoose"
   },
