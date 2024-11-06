@@ -22,9 +22,6 @@ jobs:
 
     # - name: Publish to npmjs
     #   run: npm publish --//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
-
-    - name: Configure npm for GitHub Packages
-      run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.GIT_TOKEN }}" > ~/.npmrc
-
+    
     - name: Publish to GitHub Packages
-      run: npm publish
+      run: npm publish --//npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}
