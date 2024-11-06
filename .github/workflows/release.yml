@@ -33,5 +33,5 @@ jobs:
         - name: Publish to github package registry
           uses: JS-DevTools/npm-publish@v3
           with:
-            token: ${{ secrets.GITHUB_TOKEN }}
+            token: ${{ secrets.GIT_TOKEN }}
             registry: "https://npm.pkg.github.com"
