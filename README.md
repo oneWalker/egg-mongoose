@@ -20,8 +20,11 @@ Egg's mongoose plugin.
 
 ## Notice
 The plugin is a ahead version of egg-mongoose with some features not supported in the official one.
+
 It's keep up to date with the latest version of official [egg-mongoose](https://github.com/eggjs/egg-mongoose).
-The new features are not supported in the current official one. Pull Requests link: https://xgithub.com/eggjs/egg-mongoose/pull/60 
+
+The new features are not supported in the current official one but can be used with this one. Pull Requests to official one link: https://xgithub.com/eggjs/egg-mongoose/pull/60 
+
 - place the model files in a custom location
 - rename the delegate property to `Context`. 
 
