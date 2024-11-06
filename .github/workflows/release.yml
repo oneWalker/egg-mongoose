@@ -1,38 +1,32 @@
-name: Publish my node package
+name: Publish Package
 
 on:
   push:
-    branches: [cur-publish, cur-publish-dev]
+    branches: [ cur-publish, cur-publish-dev ]
 
-jobs:  
+jobs:
   publish:
     runs-on: ubuntu-latest
 
     steps:
-      
-      - name: Git checkout
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v4
 
-      # Setup Node.js environment
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'  # Specify the Node.js version
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
 
-      # Install action dependencies
-      - name: Install action dependencies
-        run: npm i --no-package-lock --no-fund --omit=dev
-        working-directory: action_repo/scripts/release
+    - name: Install dependencies
+      run: npm install
 
-      # Publish to npm
-      - name: Publish to npm
-        uses: JS-DevTools/npm-publish@v3
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
+    - name: Publish to npmjs
+      run: npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      # Publish to GitHub package registry
-      - name: Publish to GitHub package registry
-        uses: JS-DevTools/npm-publish@v3
-        with:
-          token: ${{ secrets.GIT_TOKEN }}
-          registry: "https://npm.pkg.github.com"
+    - name: Publish to GitHub Packages
+      run: npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.GIT_TOKEN }}
+        registry-url: 'https://npm.pkg.github.com/'
