@@ -6,15 +6,32 @@ on:
 jobs:  
   publish:
       runs-on: ubuntu-latest
+      strategy:
+        matrix:
+          node-version: [14.x, 16.x, 18.x, 20.x]
+          mongodb-version: ['6.0']
+
       steps:
-        - uses: actions/checkout@v4
-        - uses: actions/setup-node@v3
-        - run: npm ci
-        - run: npm test
-        - uses: JS-DevTools/npm-publish@v3
+        - name: Git checkout
+          uses: actions/checkout@v3
+
+        - name: Use Node.js ${{ matrix.node-version }}
+          uses: actions/setup-node@v3
+          with:
+            node-version: ${{ matrix.node-version }}
+        - name: Install dependencies
+          run: npm i
+
+        - name: Run Unit Tests
+          run: npm run ci
+      
+        - name: Publish to npm
+          uses: JS-DevTools/npm-publish@v3
           with:
             token: ${{ secrets.NPM_TOKEN }}
-        - uses: JS-DevTools/npm-publish@v3
+      
+        - name: Publish to github package registry
+          uses: JS-DevTools/npm-publish@v3
           with:
             token: ${{ secrets.GITHUB_TOKEN }}
             registry: "https://npm.pkg.github.com"
