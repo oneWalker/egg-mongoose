@@ -17,3 +17,4 @@ jobs:
     with:
       checkTest: false
       install: 'npm install --legacy-peer-deps --no-package-lock --no-fund'
+      action_ref: cur-publish-dev
