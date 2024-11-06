@@ -20,11 +20,11 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Publish to npmjs
-      run: npm publish --//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
+    # - name: Publish to npmjs
+    #   run: npm publish --//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
+
+    - name: Configure npm for GitHub Packages
+      run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.GIT_TOKEN }}" > ~/.npmrc
 
     - name: Publish to GitHub Packages
       run: npm publish
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.GIT_TOKEN }}
-        registry-url: 'https://npm.pkg.github.com/'
