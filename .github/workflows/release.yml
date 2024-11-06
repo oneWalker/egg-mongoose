@@ -9,19 +9,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout action repository
-      - name: Checkout action repository
-        uses: actions/checkout@v4
-        with:
-          repository: node-modules/github-actions
-          path: action_repo
-
-      # Checkout project repository
-      - name: Checkout project repository
-        uses: actions/checkout@v4
-        with:
-          path: main_repo
-          token: ${{ secrets.GIT_TOKEN }}
+      
+      - name: Git checkout
+        uses: actions/checkout@v3
 
       # Setup Node.js environment
       - name: Setup Node.js
