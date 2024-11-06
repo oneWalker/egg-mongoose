@@ -1,29 +1,30 @@
 # egg-mongoose
+
 [![NPM version][npm-image]][npm-url]
-[![build status][travis-image]][travis-url]
+[![Run tests](https://github.com/eggjs/egg-mongoose/actions/workflows/autoUnitTest.yml/badge.svg)](https://github.com/oneWalker/egg-mongoose/actions/workflows/autoUnitTest.yml)
 [![Test coverage][codecov-image]][codecov-url]
-[![David deps][david-image]][david-url]
 [![Known Vulnerabilities][snyk-image]][snyk-url]
 [![npm download][download-image]][download-url]
 
-[npm-image]: https://img.shields.io/npm/@oneWalker/egg-mongoose.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/@oneWalker/egg-mongoose
-[travis-image]: https://img.shields.io/travis/eggjs/egg-mongoose.svg?style=flat-square
-[travis-url]: https://travis-ci.org/eggjs/egg-mongoose
-[codecov-image]: https://img.shields.io/codecov/c/github/eggjs/egg-mongoose.svg?style=flat-square
-[codecov-url]: https://codecov.io/github/eggjs/egg-mongoose?branch=master
-[david-image]: https://img.shields.io/david/eggjs/egg-mongoose.svg?style=flat-square
-[david-url]: https://david-dm.org/eggjs/egg-mongoose
+[npm-image]: https://img.shields.io/npm/v/@onewalker/egg-mongoose.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/@onewalker/egg-mongoose
+[codecov-image]: https://img.shields.io/codecov/c/github/oneWalker/egg-mongoose.svg?style=flat-square
+[codecov-url]: https://app.codecov.io/github/oneWalker/egg-mongoose?branch=cur-publish-dev
 [snyk-image]: https://snyk.io/test/npm/egg-mongoose/badge.svg?style=flat-square
 [snyk-url]: https://snyk.io/test/npm/egg-mongoose
-[download-image]: https://img.shields.io/npm/dm/@oneWalker/egg-mongoose.svg?style=flat-square
-[download-url]: https://npmjs.org/package/@oneWalker/egg-mongoose
+[download-image]: https://img.shields.io/npm/dm/@onewalker/egg-mongoose.svg?style=flat-square
+[download-url]: https://www.npmjs.com/package/@onewalker/egg-mongoose
+
 
 Egg's mongoose plugin.
 
 ## Notice
+The plugin is a ahead version of egg-mongoose with some features not supported in the official one.
+It's keep up to date with the latest version of official [egg-mongoose](https://github.com/eggjs/egg-mongoose).
+The new features are not supported in the current official one. Pull Requests link: https://xgithub.com/eggjs/egg-mongoose/pull/60 
+- place the model files in a custom location
+- rename the delegate property to `Context`. 
 
-The version of Egg's mongoose plugin add two new features, place the model files in the location you want and rename the delegate property to `Context`. It published for the original one seems like not to be maintained by the maintainers. When the original one merge the reuqest, you can also use the original one.
 
 ## Install
 
@@ -33,16 +34,16 @@ $ npm i @onewalker/egg-mongoose --save
 
 ## Configuration
 
-Change `{app_root}/config/plugin.js` to enable `egg-mongoose` plugin:
+Enable the `egg-mongoose` plugin by modifying `{app_root}/config/plugin.js`:
 
 ```js
 exports.mongoose = {
   enable: true,
-  package: 'egg-mongoose',
+  package: '@onewalker/egg-mongoose',
 };
 ```
 
-## Simple connection
+## Simple Connection
 
 ### Config
 
@@ -54,10 +55,11 @@ exports.mongoose = {
   // mongoose global plugins, expected a function or an array of function and options
   plugins: [createdPlugin, [updatedPlugin, pluginOptions]],
 };
-// recommended
+
+// Recommended
 exports.mongoose = {
-  //baseDir:'model', //models in `app/${model}`
-  //delegate:'model' //lood to `app[delegate]`
+  // baseDir: 'model', // models in `app/${model}`, // define the dir of model
+  // delegate: 'model' // load to `app[delegate]`  // define the delegate
   client: {
     url: 'mongodb://127.0.0.1/example',
     options: {},
@@ -76,20 +78,20 @@ module.exports = app => {
   const Schema = mongoose.Schema;
 
   const UserSchema = new Schema({
-    userName: { type: String  },
-    password: { type: String  },
+    userName: { type: String },
+    password: { type: String },
   });
 
   return mongoose.model('User', UserSchema);
-}
+};
 
 // {app_root}/app/controller/user.js
 exports.index = function* (ctx) {
   ctx.body = yield ctx.model.User.find({});
-}
+};
 ```
 
-## Multiple connections
+## Multiple Connections
 
 ### Config
 
@@ -102,7 +104,7 @@ exports.mongoose = {
       url: 'mongodb://127.0.0.1/example1',
       options: {},
       // client scope plugin array
-      plugins: []
+      plugins: [],
     },
     db2: {
       url: 'mongodb://127.0.0.1/example2',
@@ -110,18 +112,18 @@ exports.mongoose = {
     },
   },
   // public scope plugin array
-  plugins: []
+  plugins: [],
 };
 ```
 
 ### Example
 
 ```js
-// {app_root}/app/model/user.js
+// {app_root}/app/{baseDir}/user.js
 module.exports = app => {
   const mongoose = app.mongoose;
   const Schema = mongoose.Schema;
-  const conn = app.mongooseDB.get('db1'); 
+  const conn = app.mongooseDB.get('db1');
 
   const UserSchema = new Schema({
     userName: { type: String },
@@ -129,9 +131,9 @@ module.exports = app => {
   });
 
   return conn.model('User', UserSchema);
-}
+};
 
-// {app_root}/app/model/book.js
+// {app_root}/app/{baseDir}/book.js
 module.exports = app => {
   const mongoose = app.mongoose;
   const Schema = mongoose.Schema;
@@ -142,24 +144,24 @@ module.exports = app => {
   });
 
   return conn.model('Book', BookSchema);
-}
+};
 
 // app/controller/user.js
 exports.index = function* (ctx) {
   ctx.body = yield ctx.model.User.find({}); // get data from db1
-}
+};
 
 // app/controller/book.js
 exports.index = function* (ctx) {
   ctx.body = yield ctx.model.Book.find({}); // get data from db2
-}
+};
 ```
 
-### Default config
+### Default Config
 
-see [config/config.default.js](config/config.default.js) for more detail.
+See [config/config.default.js](config/config.default.js) for more details.
 
-## Multi-mongos support
+## Multi-Mongos Support
 
 ```js
 // {app_root}/config/config.default.js
@@ -184,3 +186,4 @@ If you are a contributor, follow [CONTRIBUTING](https://eggjs.org/zh-cn/contribu
 ## License
 
 [MIT](LICENSE)
+
