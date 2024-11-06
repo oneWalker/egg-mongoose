@@ -1,20 +1,20 @@
-name: Release
+name: Publish my node package
+
 on:
   push:
-    branches: [ cur-publish,cur-publish-dev ]
-
-jobs:
-  release:
-    name: Node.js
-    uses: eggjs/github-actions/.github/workflows/node-release.yml@master
-    permissions:
-      id-token: write
-      contents: write
-      deployments: write
-    secrets:
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
-    with:
-      checkTest: false
-      install: 'npm install --legacy-peer-deps --no-package-lock --no-fund'
-      action_ref: cur-publish-dev
+    branches: [cur-publish, cur-publish-dev]
+jobs:  
+  publish:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v4
+        - uses: actions/setup-node@v3
+        - run: npm ci
+        - run: npm test
+        - uses: JS-DevTools/npm-publish@v3
+          with:
+            token: ${{ secrets.NPM_TOKEN }}
+        - uses: JS-DevTools/npm-publish@v3
+          with:
+            token: ${{ secrets.GITHUB_TOKEN }}
+            registry: "https://npm.pkg.github.com"
