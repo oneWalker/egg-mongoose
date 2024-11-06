@@ -1,15 +1,15 @@
 # egg-mongoose
 
 [![NPM version][npm-image]][npm-url]
-[![Run tests](https://github.com/eggjs/egg-mongoose/actions/workflows/autoUnitTest.yml/badge.svg)](https://github.com/eggjs/egg-mongoose/actions/workflows/autoUnitTest.yml)
+[![Run tests](https://github.com/eggjs/egg-mongoose/actions/workflows/autoUnitTest.yml/badge.svg)](https://github.com/oneWalker/egg-mongoose/actions/workflows/autoUnitTest.yml)
 [![Test coverage][codecov-image]][codecov-url]
 [![Known Vulnerabilities][snyk-image]][snyk-url]
 [![npm download][download-image]][download-url]
 
-[npm-image]: https://img.shields.io/npm/v/egg-mongoose.svg?style=flat-square
+[npm-image]: https://img.shields.io/npm/v/@onewalker/egg-mongoose.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/@onewalker/egg-mongoose
-[codecov-image]: https://img.shields.io/codecov/c/github/eggjs/egg-mongoose.svg?style=flat-square
-[codecov-url]: https://codecov.io/github/eggjs/egg-mongoose?branch=master
+[codecov-image]: https://img.shields.io/codecov/c/github/oneWalker/egg-mongoose.svg?style=flat-square
+[codecov-url]: https://app.codecov.io/github/oneWalker/egg-mongoose?branch=cur-publish-dev
 [snyk-image]: https://snyk.io/test/npm/egg-mongoose/badge.svg?style=flat-square
 [snyk-url]: https://snyk.io/test/npm/egg-mongoose
 [download-image]: https://img.shields.io/npm/dm/@onewalker/egg-mongoose.svg?style=flat-square
