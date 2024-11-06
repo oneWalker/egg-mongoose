@@ -12,18 +12,32 @@ jobs:
           mongodb-version: ['6.0']
 
       steps:
-        - name: Git checkout
-          uses: actions/checkout@v3
-
-        - name: Use Node.js ${{ matrix.node-version }}
-          uses: actions/setup-node@v3
+         # Checkout action repository
+        - name: Checkout action repository
+          uses: actions/checkout@v4
           with:
-            node-version: ${{ matrix.node-version }}
-        - name: Install dependencies
-          run: npm i
+            repository: node-modules/github-actions
+            path: action_repo
 
-        - name: Run Unit Tests
-          run: npm run ci
+        # Checkout project repository
+        - name: Checkout project repository
+          uses: actions/checkout@v4
+          with:
+            path: main_repo
+            token: ${{ secrets.GIT_TOKEN }}
+
+        # Setup Node.js environment
+        - name: Setup Node.js
+          uses: actions/setup-node@v4
+
+        # Install action dependencies
+        - name: Install action dependencies
+          run: npm i --no-package-lock --no-fund --omit=dev
+          working-directory: action_repo/scripts/release
+
+        # Install dependencies
+        - name: Install dependencies
+          run: npm i --no-package-lock --no-fund
       
         - name: Publish to npm
           uses: JS-DevTools/npm-publish@v3
