@@ -17,9 +17,6 @@ jobs:
       with:
         node-version: '20'
 
-    - name: Install dependencies
-      run: npm install
-
     - name: Publish to npmjs
       run: npm publish --//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
   
