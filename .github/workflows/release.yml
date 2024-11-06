@@ -21,9 +21,7 @@ jobs:
       run: npm install
 
     - name: Publish to npmjs
-      run: npm publish
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      run: npm login --registry=https://registry.npmjs.org/ -//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }} && npm publish
 
     - name: Publish to GitHub Packages
       run: npm publish
