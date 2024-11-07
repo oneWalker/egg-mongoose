@@ -1,6 +1,6 @@
 {
   "name": "@onewalker/egg-mongoose",
-  "version": "4.1.4",
+  "version": "4.1.5",
   "description": "egg mongoose plugin advanced by @oneWalker",
   "eggPlugin": {
     "name": "mongoose"
@@ -48,9 +48,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eggjs/egg-mongoose.git"
+    "url": "git+https://github.com/onewalker/egg-mongoose.git"
   },
   "bugs": {
-    "url": "https://github.com/eggjs/egg/issues"
+    "url": "https://github.com/onewalker/egg/issues"
   }
 }
