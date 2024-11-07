@@ -10,8 +10,8 @@
 [npm-url]: https://www.npmjs.com/package/@onewalker/egg-mongoose
 [codecov-image]: https://img.shields.io/codecov/c/github/oneWalker/egg-mongoose.svg?style=flat-square
 [codecov-url]: https://app.codecov.io/github/oneWalker/egg-mongoose?branch=cur-publish-dev
-[snyk-image]: https://snyk.io/test/npm/egg-mongoose/badge.svg?style=flat-square
-[snyk-url]: https://snyk.io/test/npm/egg-mongoose
+[snyk-image]: https://snyk.io/test/npm/@onewalker/egg-mongoose/badge.svg?style=flat-square
+[snyk-url]: https://snyk.io/test/npm/@onewalker/egg-mongoose
 [download-image]: https://img.shields.io/npm/dm/@onewalker/egg-mongoose.svg?style=flat-square
 [download-url]: https://www.npmjs.com/package/@onewalker/egg-mongoose
 
